@@ -4,14 +4,16 @@
 		<title>Zoo animals</title>
 		<meta charset="UTF-8" />
 		<script src="js/skrollr.min.js">// for scroll animate</script>
-		<link rel="stylesheet" type="text/css" href="css/loading.css"><!-- for loading page --></link>
+		<script src="js/jquery-3.2.1.min.js">// JQuery 3.2.1</script>
+		<link rel="stylesheet" type="text/css" href="css/loading.css"><!-- for loading page & animate --></link>
+		<!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">< for animate ></link-->
 		<style type="text/css">
 			#skrollr-body {
 				position: absolute;
 				top: 0;
 				left: 0;
 				width: 100%;
-				height: 20000px;
+				height: 6500px;
 				background-color: black;
 			}
 			
@@ -106,9 +108,264 @@
 			#giraffe-dialog-text:hover {
 				filter: blur(0px);
 			}
+			
+			.left-visitors {
+				animation-name: left;
+				animation-duration: 5s;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+			}
+			
+			@keyframes left {				
+				0% {
+					left: -10%;
+				}
+				75% {
+					top: 0%;
+					left: 45%;
+				}
+				90% {
+					opacity: 1;
+				}
+				100% {
+					left: 50%;
+					top: -150px;
+					opacity: 0;
+				}
+			}
+			
+			.right-visitors {
+				animation-name: right;
+				animation-duration: 5s;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+			}
+			
+			@keyframes right {				
+				0% {
+					right: -10%;
+				}
+				75% {
+					top: 0%;
+					right: 45%;
+				}
+				90% {
+					opacity: 1;
+				}
+				100% {
+					right: 50%;
+					top: -150px;
+					opacity: 0;
+				}
+			}
+			
+			.wing {
+				animation-name: wing;
+				animation-duration: 5s;
+				animation-timing-function: ease-out;
+				animation-iteration-count: infinite;
+			}
+			
+			@keyframes wing {
+				0% {
+					-webkit-transform: rotate(0);
+					transform: rotate(0);
+				}
+				10% {
+					-webkit-transform: rotate(6deg);
+					transform: rotate(6deg);
+				}
+				20% {
+					-webkit-transform: rotate(0);
+					transform: rotate(0);
+				}
+				30% {
+					-webkit-transform: rotate(-6deg);
+					transform: rotate(-6deg);
+				}
+				40% {
+					-webkit-transform: rotate(0);
+					transform: rotate(0);
+				}
+				50% {
+					-webkit-transform: rotate(6deg);
+					transform: rotate(6deg);
+				}
+				60% {
+					-webkit-transform: rotate(0);
+					transform: rotate(0);
+				}
+				70% {
+					-webkit-transform: rotate(-6deg);
+					transform: rotate(-6deg);
+				}
+				80% {
+					-webkit-transform: rotate(0);
+					transform: rotate(0);
+				}
+				90% {
+					-webkit-transform: rotate(6deg);
+					transform: rotate(6deg);
+				}
+				100% {
+					-webkit-transform: rotate(0);
+					transform: rotate(0);
+				}
+			}
+			
+			.wing-2 {
+				animation-name: wing-2;
+				animation-duration: 5s;
+				animation-timing-function: ease-out;
+				animation-iteration-count: infinite;
+			}
+			
+			@keyframes wing-2 {
+				0% {
+					-webkit-transform: rotate(6deg);
+					transform: rotate(6deg);
+				}
+				10% {
+					-webkit-transform: rotate(-6deg);
+					transform: rotate(-6deg);
+				}
+				20% {
+					-webkit-transform: rotate(6deg);
+					transform: rotate(6deg);
+				}
+				30% {
+					-webkit-transform: rotate(-6deg);
+					transform: rotate(-6deg);
+				}
+				40% {
+					-webkit-transform: rotate(6deg);
+					transform: rotate(6deg);
+				}
+				50% {
+					-webkit-transform: rotate(-6deg);
+					transform: rotate(-6deg);
+				}
+				60% {
+					-webkit-transform: rotate(6deg);
+					transform: rotate(6deg);
+				}
+				70% {
+					-webkit-transform: rotate(-6deg);
+					transform: rotate(-6deg);
+				}
+				80% {
+					-webkit-transform: rotate(6deg);
+					transform: rotate(6deg);
+				}
+				90% {
+					-webkit-transform: rotate(-6deg);
+					transform: rotate(-6deg);
+				}
+				100% {
+					-webkit-transform: rotate(6deg);
+					transform: rotate(6deg);
+				}
+			}
+			
+			#game-body {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+			
+			#thermometer-bar {
+				transition-property: height;
+				transition-duration: 2s;
+				transition-timing-function: ease-out;
+			}
+			
+			.animal-area {
+				/* Abandon */
+				height: 200px;
+				width: 200px;
+			}
+			
+			.animal-area:hover {
+				/*box-shadow: 0 0 20px red; */
+			}
 		</style>
 	</head>
 	<body>
+		<div id="game-body" style="display: none;">
+			<div class="skrollable-container">
+				<div class="thermometer" style="position: fixed; top: 25%; left: 5px; z-index: 87;">
+					<img id="thermometer-base" src="src/img/thermometer-2.png"/>
+					<div id="thermometer-bar" style="height: 184px; width: 61px; position: absolute; bottom: 31px; left: 64px; background-color: rgb(223, 49, 86); border-radius: 50px;"></div>
+					<img id="thermometer-bar-base" src="src/img/thermometer-degree-2.png" style="position: absolute; bottom: 31px; left: 25px;"/>
+					<!-- Additional: thermometer-bar box shadow-->
+				</div>
+				<div id="frontground" class="base">
+					<!-- Abandon -->
+				</div>
+				<div id="background" class="base">
+					<div class="sky" style="background: linear-gradient(to top, rgb(165, 222, 228), rgb(46, 169, 223));">
+						<div id="moon"></div>
+						<div id="sun"></div>
+						<div id="mountain" style="height: 100%; position: relative; bottom: -15%; left: 0; background-image: url('src/img/forest.png'); background-repeat: repeat-x; background-size: auto 183px; background-position: 0 100%;">
+							<div id="mountain-content" style="width=100%;"><!-- no use --></div>
+						</div>
+					</div>
+					<div class="ground" style="position: relative;">
+						<img id="zoo-entrance" src="src/img/zoo-1.png" style="height: 438px; position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto -16px auto; z-index: 87;"/>
+						<div id="zoo-entrance-shim" style="width: 750px; height: 75px; position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto; background-color: rgb(250, 218, 149);  z-index: 1;"></div>
+						
+						<div id="grassland-2" class="animal-area" style="position: absolute; bottom: 68%; left: 17.8%;">
+							<div class="back" style="position: absolute; bottom: 0; left: -35px;">
+								<img id="tree-1" src="src/img/tree-1.png" style="width: 200px; position: absolute; bottom: 0; left: 0; margin-left: -93px"/>
+								<img id="monkey" src="src/img/monkey.png" style="width: 74px; position: absolute; bottom: 37px; left: -101px; transform: scaleX(-1) rotate(19deg);"/>
+							</div>
+							<div class="front" style="position: absolute; bottom: 0;">
+								<img id="lion" src="src/img/lion.png" style="width: 150px; position: absolute; bottom: 0; left: 0;"/>
+								<img id="grass-4" src="src/img/grass-4.png" style="width: 140px; position: absolute; bottom: 0; left: 0; margin-left: -71px"/>
+							</div>
+						</div>
+						
+						<div id="grassland-1" class="animal-area" style="position: absolute; bottom: 24%; left: 18.5%;">
+							<img id="elephant" src="src/img/elephant.png" style="width: 240px; position: absolute; bottom: 0; left: 0;"/>
+							<img id="giraffe" src="src/img/giraffe.png" style="height: 300px; position: absolute; bottom: 13px; left: -143px;"/><!-- WARNING!! duplicate id -->
+							<img id="grass-1" src="src/img/grass-1.png" style="width: 168px; position: absolute; bottom: 0; left: 0; margin-left: -87px"/>
+						</div>
+						
+						<div id="nocturnal" class="animal-area" style="position: absolute; bottom: 50%; left: 32%;">
+							<img id="nocturnal-museum" src="src/img/nocturnal-2.png" style="width: 200px; position: absolute; bottom: 0; left: 0;"/>
+							<img id="no-flash-warning" src="src/img/no_flash-3.png" style="height: 50px; position: absolute; bottom: 0; left: -27px;"/>
+						</div>
+						
+						<div id="polar" class="animal-area" style="position: absolute; bottom: 79%; left: 60%;">
+							<img id="iceberg" src="src/img/iceberg.png" style="width: 200px; position: absolute; bottom: 0; left: 0; margin-left: -139px"/>
+							<img id="polar-bear" src="src/img/polar_bear.png" style="width: 140px; position: absolute; bottom: 0; left: 0;"/>
+						</div>
+						
+						<div id="aquarium" class="animal-area" style="position: absolute; bottom: 65%; left: 80%;">
+							<img id="pool" src="src/img/pool.png" style="width: 250px; position: absolute; bottom: 0; left: 0;"/>
+							<img id="dolphin-1" src="src/img/dolphin-1.png" style="width: 100px; position: absolute; bottom: 48px; left: 100px; transform: rotate(29deg);"/>
+							<img id="dolphin-2" src="src/img/dolphin-3.png" style="width: 100px; position: absolute; bottom: 29px; left: 40px; transform: rotate(33deg);"/>
+							<img id="half-pool" src="src/img/half_pool.png" style="width: 250px; position: absolute; bottom: 0; left: 0;"/>
+						</div>
+						
+						<div id="rivulet" class="animal-area" style="position: absolute; bottom: 20%; left: 68%;">
+							<img id="wallow" src="src/img/wallow.png" style="width: 250px; position: absolute; bottom: 0; left: 0;"/>
+							<img id="crocodile" src="src/img/crocodile.png" style="width: 300px; position: absolute; bottom: 0; left: -168px; transform: scaleX(-1);"/>
+							<img id="hippo" src="src/img/hippo-1.png" style="width: 175px; position: absolute; bottom: 0; left: 121px;"/>
+						</div>
+					</div>
+					<div class="road" style="position: relative;">
+						<div id="fence" style="height: 100%; position: relative; top: -75px; left: 0; background-image: url('src/img/fence.png'); background-repeat: repeat-x; background-size: auto 100px; background-position: 0 0%;">
+							<div id="fence-content" style="width=100%;"><!-- no use --></div>
+						</div>
+						<div id="fence-shim" style="width: 750px; height: 25px; position: absolute; top: 0; left: 0; right: 0; margin: 0 auto; background-color: rgb(167, 167, 167); z-index: 1;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 		<div id="skrollr-body">
 			<!-- Loading begin -->
 			<div id="front-cover" class="loading">
@@ -202,7 +459,18 @@
 					</div>
 				</div>
 				
-				<div id="scene-3" class="scene" data-0="display: none;">
+				<div id="scene-3" class="scene" data-0="display: none;" data-4000="display: block;" data-5500="opacity: 1;" data-5750="opacity: 0;" data-6001="display: none;">
+					<div style="width: 100%; height: 10%; position: relative; top: calc(90% - 100px); left: 0;">
+						<div id="visitor-1" class="left-visitors" style="position: absolute;">
+							<img id="parent" class="wing-2" src="src/img/parent.png" style="height: 150px;"/>
+						</div>
+						
+						<div id="visitor-2" class="left-visitors" style="position: absolute; left: -10%; animation-delay: 2.5s;">
+							<img id="kid-1" class="ld ld-bounce-a" src="src/img/kid-4.png" style="height: 100px; position: absolute; top: 51px; left: 100px;"/>
+							<img id="kid-2" class="ld ld-bounce-a" src="src/img/kid-3.png" style="height: 100px; position: absolute; top: 51px; left: 32px;"/>
+							<img id="kid-3" src="src/img/kid-1-shocked.png" style="height: 100px; position: absolute; top: 84px; left: -70px"/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -380,6 +648,17 @@
 				else {
 					loaded = true;
 				}
+				
+				$(window).scroll(function() {
+					var $this = $(this);
+					//var bodyHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.html.clientHeight, document.html.scrollHeight, document.html.offsetHeight);
+					var bodyHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight); // WARNING!! BUGGY
+
+					if ($this.scrollTop() > bodyHeight * (5800/6500)) { // (scene-3 almost end / all frame size)
+					   document.getElementById("skrollr-body").style.display = "none";
+					   document.getElementById("game-body").style.display = "inline"; // default
+					}
+				});
 			}
 		</script>
 	</body>
