@@ -283,16 +283,198 @@
 			
 			.animal-area {
 				/* Abandon */
-				height: 200px;
-				width: 200px;
+				/*height: 200px;*/
+				/*width: 200px;*/
 			}
 			
 			.animal-area:hover {
-				/*box-shadow: 0 0 20px red; */
+				/*box-shadow: 0 0 20px red;*/
+			}
+			
+			#nocturnal-background {
+				display: none;
+			}
+			
+			#nocturnal-mask:hover + #nocturnal-background {
+				display: block;
+			}
+			
+			#grassland-1-background {
+				display: none;
+			}
+			
+			#grassland-1-mask:hover + #grassland-1-background {
+				display: block;
+			}
+			
+			#grassland-2-background {
+				display: none;
+			}
+			
+			#grassland-2-mask:hover + #grassland-2-background {
+				display: block;
+			}
+			
+			#polar-background {
+				display: none;
+			}
+			
+			#polar-mask:hover + #polar-background {
+				display: block;
+			}
+			
+			#aquarium-background {
+				display: none;
+			}
+			
+			#aquarium-mask:hover + #aquarium-background {
+				display: block;
+			}
+			
+			#rivulet-background {
+				display: none;
+			}
+			
+			#rivulet-mask:hover + #rivulet-background {
+				display: block;
+			}
+			
+			#playbox-shim {
+				display: none;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				background-color: rgba(0, 0, 0, 0.75);
+			}
+			
+			#playbox {
+				display: none;
+				height: 50%;
+				width: 50%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				transform: translate(50%, 50%);
+				border-radius: 25px;
+				background-color: white;
+			}
+			
+			#playbox-inner {
+				display: block;
+				height: calc(100% - 25px);
+				width: calc(100% - 25px);
+				position: relative;
+				top: 12.5px;
+				left: 12.5px;
+				border-radius: 10px;
+				background-color: black;
+				overflow: hidden;
+			}
+			
+			.playbox-scene {
+				display: none;
+			}
+			
+			.hide-and-seek {
+				animation-name: HideAndSeek;
+				animation-duration: 2s;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+			}
+			
+			@keyframes HideAndSeek {
+				0% {
+					visibility: visible;
+					opacity: 1;
+				}
+				50% {
+					visibility: visible;
+					opacity: 1;
+				}
+				51% {
+					visibility: hidden;
+					opacity: 0;
+				}
+				100% {
+					visibility: hidden;
+					opacity: 0;
+				}
+			}
+			
+			.take-photo {
+				animation-name: takePhoto;
+				animation-duration: 2s;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+			}
+			
+			@keyframes takePhoto {
+				0% {
+					background: black;
+				}
+				45% {
+					background: black;
+				}
+				100% {
+					background: radial-gradient(ellipse farthest-corner at 95% 75% , #00FFFF 0%, rgba(255, 255, 255, 1) 50%, #0000FF 95%);
+				}
+			}
+			
+			#unclick-shim {
+				display: none;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				background-color: rgba(0, 0, 0, 0.75);
+			}
+			
+			.boom {
+				animation-name: boom;
+				animation-duration: 1s;
+				animation-timing-function: ease-in;
+				animation-fill-mode: forwards;
+				animation-iteration-count: 1;
+			}
+			
+			@keyframes boom {
+				0% {
+					top: 25%; 
+					left: 5px;
+				}
+				100% {
+					top: 50%; 
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+			}
+			
+			.thermometer {
+				transition: top 2s 1s, left 2s 1s, transform 2s 1s;
+				transition-timing-function: ease-out;
+			}
+			
+			#bloom {
+				display: none;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 88;
 			}
 		</style>
 	</head>
 	<body>
+		<div id="last-scene" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: linear-gradient(to top, rgb(255, 255, 255), rgb(245, 180, 55), rgb(236,77,11));">
+			<div style="width: 100%; height: 100%; position: absolute; background: url('src/img/desert-01.png'); background-size: 1920px; background-repeat: no-repeat; background-position: bottom center;"></div>
+			<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/6jrbDhyiqq8" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
 		<div id="game-body" style="display: none;">
 			<div class="skrollable-container">
 				<div class="thermometer" style="position: fixed; top: 25%; left: 5px; z-index: 87;">
@@ -317,6 +499,9 @@
 						<div id="zoo-entrance-shim" style="width: 750px; height: 75px; position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto; background-color: rgb(250, 218, 149);  z-index: 1;"></div>
 						
 						<div id="grassland-2" class="animal-area" style="position: absolute; bottom: 68%; left: 17.8%;">
+							<div id="grassland-2-mask" style="width: 289px; height: 188px; position: absolute; bottom: 0; left: -139px; cursor: pointer; z-index: 88;" onclick="increaseAnger(2)"></div>
+							<img id="grassland-2-background" src="src/img/grassland-2_hover.png" style="position: absolute; bottom: -5px; left: -142px; filter: blur(4px);"/>
+							
 							<div class="back" style="position: absolute; bottom: 0; left: -35px;">
 								<img id="tree-1" src="src/img/tree-1.png" style="width: 200px; position: absolute; bottom: 0; left: 0; margin-left: -93px"/>
 								<img id="monkey" src="src/img/monkey.png" style="width: 74px; position: absolute; bottom: 37px; left: -101px; transform: scaleX(-1) rotate(19deg);"/>
@@ -328,22 +513,34 @@
 						</div>
 						
 						<div id="grassland-1" class="animal-area" style="position: absolute; bottom: 24%; left: 18.5%;">
+							<div id="grassland-1-mask" style="width: 385px; height: 313px; border-radius: 0 313px 0 0; position: absolute; bottom: 0; left: -143px; cursor: pointer; z-index: 88;" onclick="increaseAnger(1)"></div>
+							<img id="grassland-1-background" src="src/img/grassland-1_hover.png" style="position: absolute; bottom: -5px; left: -147px; filter: blur(4px);"/>
+							
 							<img id="elephant" src="src/img/elephant.png" style="width: 240px; position: absolute; bottom: 0; left: 0;"/>
 							<img id="giraffe" src="src/img/giraffe.png" style="height: 300px; position: absolute; bottom: 13px; left: -143px;"/><!-- WARNING!! duplicate id -->
 							<img id="grass-1" src="src/img/grass-1.png" style="width: 168px; position: absolute; bottom: 0; left: 0; margin-left: -87px"/>
 						</div>
 						
 						<div id="nocturnal" class="animal-area" style="position: absolute; bottom: 50%; left: 32%;">
+							<div id="nocturnal-mask" style="width: 227px; height: 232px; position: absolute; bottom: 0; left: -27px; cursor: pointer; z-index: 88;" onclick="increaseAnger(3)"></div>
+							<img id="nocturnal-background" src="src/img/nocturnal_hover.png" style="position: absolute; bottom: -5px; left: -32px; filter: blur(4px);"/>
+							
 							<img id="nocturnal-museum" src="src/img/nocturnal-2.png" style="width: 200px; position: absolute; bottom: 0; left: 0;"/>
 							<img id="no-flash-warning" src="src/img/no_flash-3.png" style="height: 50px; position: absolute; bottom: 0; left: -27px;"/>
 						</div>
 						
 						<div id="polar" class="animal-area" style="position: absolute; bottom: 79%; left: 60%;">
+							<div id="polar-mask" style="width: 279px; height: 116px; position: absolute; bottom: 0; left: -139px; cursor: pointer; z-index: 88;" onclick="increaseAnger(4)"></div>
+							<img id="polar-background" src="src/img/polar_hover.png" style="position: absolute; bottom: -5px; left: -142px; filter: blur(4px);"/>
+							
 							<img id="iceberg" src="src/img/iceberg.png" style="width: 200px; position: absolute; bottom: 0; left: 0; margin-left: -139px"/>
 							<img id="polar-bear" src="src/img/polar_bear.png" style="width: 140px; position: absolute; bottom: 0; left: 0;"/>
 						</div>
 						
 						<div id="aquarium" class="animal-area" style="position: absolute; bottom: 65%; left: 80%;">
+							<div id="aquarium-mask" style="width: 250px; height: 131px; position: absolute; bottom: 0; left: 0; cursor: pointer; z-index: 88;" onclick="increaseAnger(5)"></div>
+							<img id="aquarium-background" src="src/img/aquarium_hover.png" style="position: absolute; bottom: -5px; left: -3px; filter: blur(4px);"/>
+							
 							<img id="pool" src="src/img/pool.png" style="width: 250px; position: absolute; bottom: 0; left: 0;"/>
 							<img id="dolphin-1" src="src/img/dolphin-1.png" style="width: 100px; position: absolute; bottom: 48px; left: 100px; transform: rotate(29deg);"/>
 							<img id="dolphin-2" src="src/img/dolphin-3.png" style="width: 100px; position: absolute; bottom: 29px; left: 40px; transform: rotate(33deg);"/>
@@ -351,6 +548,9 @@
 						</div>
 						
 						<div id="rivulet" class="animal-area" style="position: absolute; bottom: 20%; left: 68%;">
+							<div id="rivulet-mask" style="width: 435px; height: 98px; position: absolute; bottom: 0; left: -139px; cursor: pointer; z-index: 88;" onclick="increaseAnger(6)"></div>
+							<img id="rivulet-background" src="src/img/rivulet_hover.png" style="position: absolute; bottom: -5px; left: -142px; filter: blur(4px);"/>
+						
 							<img id="wallow" src="src/img/wallow.png" style="width: 250px; position: absolute; bottom: 0; left: 0;"/>
 							<img id="crocodile" src="src/img/crocodile.png" style="width: 300px; position: absolute; bottom: 0; left: -168px; transform: scaleX(-1);"/>
 							<img id="hippo" src="src/img/hippo-1.png" style="width: 175px; position: absolute; bottom: 0; left: 121px;"/>
@@ -363,9 +563,72 @@
 						<div id="fence-shim" style="width: 750px; height: 25px; position: absolute; top: 0; left: 0; right: 0; margin: 0 auto; background-color: rgb(167, 167, 167); z-index: 1;"></div>
 					</div>
 				</div>
+				
+				<div id="playbox-shim" onclick="closeBox()"></div>
+				<div id="playbox">
+					<div id="playbox-inner">
+						<div id="playbox-scene-1" class="playbox-scene" style="background: linear-gradient(to top, rgb(165, 222, 228), rgb(46, 169, 223));">
+							<img class="background" src="src/img/animal_area-1.png" style="width: 950px; position: relative; top: 0; left: 0;"/>
+							<img class="ld ld-tremble" src="src/img/giraffe_unhappy-2.png" style="height: 350px; position: absolute; top: 0%; left: 22%;"/>
+							<img class="ld ld-tremble" src="src/img/elephant_unhappy-2.png" style="height: 250px; position: absolute; top: 20%; left: 36%;"/>
+							<img src="src/img/fence_front.png" style="width: 416px; height: 150px; position: absolute; top: 58%; left: 24%;"/>
+						</div>
+						
+						<div id="playbox-scene-2" class="playbox-scene">							
+						</div>
+						
+						<div id="playbox-scene-3" class="playbox-scene">
+							<img class="background take-photo" style="width: 950px; height: 950px; position: absolute; top: 0; left: 0;"/>
+							<!--img class="wing-2 hide-and-seek" src="src/img/eye-2.png" style="width: 100px; position: absolute; top: 0%; left: 22%;"/-->
+							<img class="ld ld-tremble" src="src/img/eye-3.png" style="width: 100px; position: absolute; top: 19%; left: 17%;"/>
+							<div style="position: absolute; top: 38%; left: 63%; transform: rotate(-13deg);">
+								<img src="src/img/phone.png" style="height: 100px; position: absolute; top: 0; left: 0;"/>
+								<img src="src/img/hand.png" style="height: 150px; position: relative; top: 50px; left: 22px;"/>
+								<img class="hide-and-seek" src="src/img/flash.png" style="height: 110px; position: absolute; top: -29px; left: -33px; animation-delay: 1.33s; opacity: 0;"/>
+							</div>
+						</div>
+						
+						<div id="playbox-scene-4" class="playbox-scene">
+						</div>
+						
+						<div id="playbox-scene-5" class="playbox-scene">
+							<img class="background" src="src/img/animal_area-3.png" style="width: 950px; position: relative; top: 0; left: 0;"/>
+							
+							<img src="src/img/dolphin-3_unhappy.png" style="width: 250px; position: absolute; top: 0%; left: 22%;"/>
+							<img src="src/img/dolphin-1_unhappy.png" style="width: 250px; position: absolute; top: 20%; left: 36%;"/>
+							<img src="src/img/half_pool.png" style="width: 416px; height: 150px; position: absolute; top: 58%; left: 24%;"/>
+						</div>
+						
+						<div id="playbox-scene-6" class="playbox-scene">
+							<img class="background" src="src/img/animal_area-2.png" style="width: 950px; position: relative; top: 0; left: 0;"/>
+							<div style="position: absolute; top: 0%; left: 22%; transform: scaleX(-1);">
+								<img class="hide-and-seek" src="src/img/hippo-2.png" style="width: 250px; position: absolute;"/>
+								<img class="hide-and-seek" src="src/img/hippo_unhappy.png" style="width: 250px; position: relative; animation-delay: 1s;"/>
+							</div>
+							
+							<img src="src/img/fence_back.png" style="width: 673px; height: 150px; position: absolute; top: 13%; left: 9%;"/>
+							
+							<div style="position: absolute; top: 21%; left: 13%; transform: scaleX(-1);">
+								<img class="hide-and-seek" src="src/img/crocodile.png" style="width: 450px; position: absolute;"/>
+								<img class="hide-and-seek" src="src/img/crocodile_unhappy.png" style="width: 450px; position: relative; animation-delay: 1s;"/>
+							</div>
+							
+							<img class="ld ld-wander-h x4" src="src/img/garbage-1.png" style="width: 175px; position: absolute; top: 46%; left: 73%"/>
+							<img class="ld ld-wander-h x4" src="src/img/garbage-2.png" style="width: 175px; position: absolute; top: 21%; left: 76%"/>
+							<img class="ld ld-wander-h x4" src="src/img/garbage-3.png" style="width: 175px; position: absolute; top: 24%; left: 72%"/>
+							<img class="ld ld-wander-h x4" src="src/img/garbage-4.png" style="width: 175px; position: absolute; top: 49%; left: 60%"/>
+							<img class="ld ld-wander-h x4" src="src/img/garbage-5.png" style="width: 175px; position: absolute; top: 33%; left: 79%"/>
+						</div>
+					</div>
+				</div>
+				
+				<div id="unclick-shim"></div>
+				<div id="bloom">
+					<img src="src/img/boom.png" style="width: 500px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+				</div>
 			</div>
 		</div>
-	
+		
 		<div id="skrollr-body">
 			<!-- Loading begin -->
 			<div id="front-cover" class="loading">
@@ -477,6 +740,8 @@
 		<script type="text/javascript">
 			var loaded = false, // isWebLoaded
 				loadTimer = 1000;
+				
+			var nowPlaying;
 				
 			var loadingAnimals = [
 				{ // Koala
@@ -657,8 +922,59 @@
 					if ($this.scrollTop() > bodyHeight * (5800/6500)) { // (scene-3 almost end / all frame size)
 					   document.getElementById("skrollr-body").style.display = "none";
 					   document.getElementById("game-body").style.display = "inline"; // default
+					   //$('body').style.height = "100%";
 					}
 				});
+			}
+			
+			function increaseAnger(index){
+				document.getElementById("playbox-shim").style.display = "block";
+				document.getElementById("playbox").style.display = "block";
+				document.getElementById("playbox-scene-" + index).style.display = "block";
+				
+				nowPlaying = index;
+			}
+			
+			function closeBox(){
+				document.getElementById("playbox-shim").style.display = "none";
+				document.getElementById("playbox").style.display = "none";
+				document.getElementById("playbox-scene-" + nowPlaying).style.display = "none";
+				
+				//var anger = document.getElementById("thermometer-bar").style.height;
+				var anger = $("#thermometer-bar").height();
+				document.getElementById("thermometer-bar").style.height = (anger + 20) * 1.15 + "px";
+				
+				if ((anger + 20) * 1.15 > 450){
+					document.getElementById("unclick-shim").style.display = "block";
+					
+					setTimeout(function(){ // move thermometer
+						$(".thermometer").attr("class", "thermometer boom");
+						
+						setTimeout(function(){ // show boom
+							document.getElementById("bloom").style.display = "block";
+							
+							setTimeout(function(){ // end game
+								document.getElementById("game-body").style.display = "none";
+							}, 3000);
+						}, 1200);
+					}, 1000);
+					
+					/*setTimeout(function(){
+							document.getElementById("bloom").style.display = "block";
+							alert(87);
+					}, 2200);*/
+					/*$(".thermometer").css({
+						"top": "50%",
+						"left": "50%",
+						"transform": "translate(-50%, -50%)",
+					});*/
+				}
+				else if ((anger + 20) * 1.15 > 400){
+					$(".thermometer").attr("class", "thermometer ld ld-tremble xhalf");
+				}
+				else if ((anger + 20) * 1.15 > 330) {
+					$(".thermometer").attr("class", "thermometer ld ld-tremble");
+				}
 			}
 		</script>
 	</body>
