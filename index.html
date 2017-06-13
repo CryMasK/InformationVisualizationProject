@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Zoo animals</title>
+		<meta charset="UTF-8" />
+		<script src="js/skrollr.min.js">// for scroll animate</script>
+		<link rel="stylesheet" type="text/css" href="css/loading.css"><!-- for loading page --></link>
+		<style type="text/css">
+			#skrollr-body {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 20000px;
+				background-color: black;
+			}
+			
+			#front-cover {
+				position: fixed;
+			}
+			
+			.loading {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				/*animation-name: fade;*/
+				animation-timing-function: ease-in;
+				animation-duration: 800ms;
+				animation-iteration-count: 1;
+				z-index: 88;
+			}
+			
+			.loading-container {
+				display: flex;
+				display: -webkit-flex;
+				flex-wrap: wrap;
+				flex-direction: column;
+				position: fixed;
+				width: 100%;
+				text-align: center;
+				margin: 15% 0 0 0;
+			}
+			
+			#loading-animal {
+				width: 15%;
+				margin: 0 auto 0 auto;
+			}
+			
+			#loading-symbol {
+				margin: 50px auto 0 auto;
+				font-size: 64px;
+				filter: saturate(4) contrast(175%) brightness(150%);
+			}
+			
+			#loading-symbol::after {
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			
+			@keyframes fade {				
+				0% {
+					opacity: 1
+				}
+				100%{
+					opacity: 0;
+				}
+			}
+			
+			#background {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				display: -webkit-flex;
+				flex-wrap: wrap;
+				flex-direction: column;
+			}
+			
+			.sky {
+				flex: 2;
+				position: relative;
+				background: linear-gradient(to top, rgb(9, 75, 127), rgb(15, 37, 64)); /* 淺藍 to 紺 #kon */
+			}
+			
+			.ground {
+				flex: 7;
+				background-color: rgb(250, 218, 149); /* 淺黃 #usuki 0.9 */
+			}
+			
+			.road {
+				flex: 1;
+				background-color: rgb(167, 167, 167);
+			}
+			
+			.scene {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+			}
+			
+			#giraffe-dialog-text {
+				filter: blur(4px);
+			}
+			
+			#giraffe-dialog-text:hover {
+				filter: blur(0px);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="skrollr-body">
+			<!-- Loading begin -->
+			<div id="front-cover" class="loading">
+				<div class="loading-container">
+					<img id="loading-animal" alt="NOW LOADING..."/>
+					<div id="loading-symbol" class="ld ld-ring ld-cycle"></div>
+				</div>
+			</div>
+			<!-- Loading end -->
+			<div class="skrollable-container" data-0="opacity: 0.8;" data-500="opacity: 1;">
+				<div class="thermometer" style="position: fixed; top: 25%; left: 5px; z-index: 87;">
+					<img id="thermometer-base" src="src/img/thermometer-2.png"/>
+					<div id="thermometer-bar" data-2000="height: 0px" data-2800="height: 184px;" style="position: absolute; bottom: 31px; left: 64px; width: 61px; background-color: rgb(223, 49, 86); border-radius: 50px;"></div>
+					<img id="thermometer-bar-base" src="src/img/thermometer-degree-2.png" style="position: absolute; bottom: 31px; left: 25px;"/>
+					<!-- Additional: thermometer-bar box shadow-->
+				</div>
+				<div id="frontground" class="base">
+					<!-- Abandon -->
+				</div>
+				<div id="background" class="base">
+					<div class="sky" data-0="background: linear-gradient(to top, rgb(9, 75, 127), rgb(15, 37, 64));" data-1600="background: linear-gradient(to top, rgb(165, 222, 228), rgb(51, 166, 184));" data-2500="background: linear-gradient(to top, rgb(165, 222, 228), rgb(46, 169, 223));">
+						<div id="moon"></div>
+						<div id="sun"></div>
+						<div id="mountain" style="height: 100%; position: relative; bottom: -15%; left: 0; background-image: url('src/img/forest.png'); background-repeat: repeat-x; background-size: auto 183px; background-position: 0 100%;">
+							<div id="mountain-content" style="width=100%;"><!-- no use --></div>
+						</div>
+					</div>
+					<div class="ground" style="position: relative;">
+						<img id="zoo-entrance" src="src/img/zoo-1.png" style="height: 438px; position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto -16px auto; z-index: 87;"/>
+						<div id="zoo-entrance-shim" style="width: 750px; height: 75px; position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto; background-color: rgb(250, 218, 149);  z-index: 1;"></div>
+						
+						<div id="grassland-2" style="position: absolute; top: 32%; left: 17.8%;">
+							<div class="back" style="position: relative; left: -35px; top: 0;">
+								<img id="tree-1" src="src/img/tree-1.png" style="width: 200px; position: absolute; bottom: 0; left: 0; margin-left: -93px"/>
+								<img id="monkey" src="src/img/monkey.png" style="width: 74px; position: absolute; bottom: 37px; left: -101px; transform: scaleX(-1) rotate(19deg);"/>
+							</div>
+							<div class="front">
+								<img id="lion" src="src/img/lion.png" style="width: 150px; position: absolute; bottom: 0; left: 0;"/>
+								<img id="grass-4" src="src/img/grass-4.png" style="width: 140px; position: absolute; bottom: 0; left: 0; margin-left: -71px"/>
+							</div>
+						</div>
+						
+						<div id="grassland-1" style="position: absolute; bottom: 24%; left: 18.5%;">
+							<img id="elephant" src="src/img/elephant.png" style="width: 240px; position: absolute; bottom: 0; left: 0;"/>
+							<img id="giraffe" src="src/img/giraffe.png" data-0="display: none;" data-4001="display: block;" style="height: 300px; position: absolute; bottom: 13px; left: -143px;"/><!-- WARNING!! duplicate id -->
+							<img id="grass-1" src="src/img/grass-1.png" style="width: 168px; position: absolute; bottom: 0; left: 0; margin-left: -87px"/>
+						</div>
+						
+						<div id="nocturnal" style="position: absolute; top: 50%; left: 32%;">
+							<img id="nocturnal-museum" src="src/img/nocturnal-2.png" style="width: 200px; position: absolute; bottom: 0; left: 0;"/>
+							<img id="no-flash-warning" src="src/img/no_flash-3.png" style="height: 50px; position: absolute; bottom: 0; right: 0;"/>
+						</div>
+						
+						<div id="polar" style="position: absolute; top: 21%; left: 60%;">
+							<img id="iceberg" src="src/img/iceberg.png" style="width: 200px; position: absolute; bottom: 0; left: 0; margin-left: -139px"/>
+							<img id="polar-bear" src="src/img/polar_bear.png" style="width: 140px; position: absolute; bottom: 0; left: 0;"/>
+						</div>
+						
+						<div id="aquarium" style="position: absolute; top: 35%; left: 80%;">
+							<img id="pool" src="src/img/pool.png" style="width: 250px; position: absolute; bottom: 0; left: 0;"/>
+							<img id="dolphin-1" src="src/img/dolphin-1.png" style="width: 100px; position: absolute; bottom: 48px; left: 100px; transform: rotate(29deg);"/>
+							<img id="dolphin-2" src="src/img/dolphin-3.png" style="width: 100px; position: absolute; bottom: 29px; left: 40px; transform: rotate(33deg);"/>
+							<img id="half-pool" src="src/img/half_pool.png" style="width: 250px; position: absolute; bottom: 0; left: 0;"/>
+						</div>
+						
+						<div id="rivulet" style="position: absolute; bottom: 20%; left: 68%;">
+							<img id="wallow" src="src/img/wallow.png" style="width: 250px; position: absolute; bottom: 0; left: 0;"/>
+							<img id="crocodile" src="src/img/crocodile.png" style="width: 300px; position: absolute; bottom: 0; left: -168px; transform: scaleX(-1);"/>
+							<img id="hippo" src="src/img/hippo-1.png" style="width: 175px; position: absolute; bottom: 0; left: 121px;"/>
+						</div>
+					</div>
+					<div class="road" style="position: relative;">
+						<div id="fence" style="height: 100%; position: relative; top: -75px; left: 0; background-image: url('src/img/fence.png'); background-repeat: repeat-x; background-size: auto 100px; background-position: 0 0%;">
+							<div id="fence-content" style="width=100%;"><!-- no use --></div>
+						</div>
+						<div id="fence-shim" style="width: 750px; height: 25px; position: absolute; top: 0; left: 0; right: 0; margin: 0 auto; background-color: rgb(167, 167, 167); z-index: 1;"></div>
+					</div>
+				</div>
+				
+				<div id="scene-1" class="scene" data-0="display: block;" data-1501="display: none;">
+					<div id="night-mask" data-600="background-color: rgba(0, 0, 0, 0.4);" data-1500="display: block; background-color: rgba(0, 0, 0, 0);" data-1501="display: none;" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
+				</div>
+				
+				<div id="scene-2" class="scene" data-0="display: none;" data-1000="display: block;" data-4001="display: none;">
+					<div class="protagonist" data-1000="top: 100%; left: 55%;" data-1500="top: 50%; left: 45%;" data-3300="top: 50%; left: 45%" data-4000="top: 39%; left: 11%" style="position: absolute; top: 100%; left: 40%;">
+						<img id="giraffe" src="src/img/giraffe.png" style="height: 300px; position: absolute; top: 0; left: 0;"/>
+						<div id="giraffe-dialog" data-1500="display: none;" data-2000="display: block" data-3000="display: none;" style="position: absolute; top: -100px; left: 61px; text-align: center;">
+							<img class="dialog" src="src/img/dialog-1.png" style="width: 210px; position: absolute; top: 0; left: 0; transform: rotate(-7deg);"/>
+							<div id="giraffe-dialog-text" style="width: 220px; position: absolute; margin-top: 50px; font-size: 20px; font-family: Impact;">They Are Coming !!</div>
+						</div>
+					</div>
+				</div>
+				
+				<div id="scene-3" class="scene" data-0="display: none;">
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var loaded = false, // isWebLoaded
+				loadTimer = 1000;
+				
+			var loadingAnimals = [
+				{ // Koala
+					fileName: "svg_f_object_80_0bg.svg",
+					backgroundColor: { // 草綠
+						R: 156,
+						G: 209,
+						B: 171
+					}
+				},
+				{ // Polar bear
+					fileName: "svg_f_object_81_0bg.svg",
+					backgroundColor: { // 灰藍
+						R: 153,
+						G: 212,
+						B: 217
+					}
+				},
+				{ // Brown bear
+					fileName: "svg_f_object_94_0bg.svg",
+					backgroundColor: { // 草綠
+						R: 156,
+						G: 209,
+						B: 171
+					}
+				},
+				{ // Giraffe
+					fileName: "svg_f_object_99_0bg.svg",
+					backgroundColor: { // 桃紅
+						R: 225,
+						G: 123,
+						B: 128
+					}
+				},
+				{ // Panda
+					fileName: "svg_f_object_100_0bg.svg",
+					backgroundColor: { // 灰藍
+						R: 153,
+						G: 212,
+						B: 217
+					}
+				},
+				{ // Monkey
+					fileName: "svg_f_object_104_0bg.svg",
+					backgroundColor: { // 橘
+						R: 246,
+						G: 181,
+						B: 151
+					}
+				},
+				{ // Surprise!!
+					fileName: "svg_f_object_105_0bg.svg",
+					backgroundColor: { // 淺黃色
+						R: 253,
+						G: 252,
+						B: 232
+					}
+				},
+				{ // Penguin
+					fileName: "svg_f_object_108_0bg.svg",
+					backgroundColor: { // 灰藍
+						R: 153,
+						G: 212,
+						B: 217
+					}
+				},
+				{ // Lion
+					fileName: "svg_f_object_109_0bg.svg",
+					backgroundColor: { // 草綠2
+						R: 138,
+						G: 200,
+						B: 135
+					}
+				},
+				{ // Cat
+					fileName: "svg_f_object_111_0bg.svg",
+					backgroundColor: { // 米
+						R: 235,
+						G: 229,
+						B: 211
+					}
+				},
+				{ // Coon
+					fileName: "svg_f_object_149_0bg.svg",
+					backgroundColor: { // 桃紅
+						R: 225,
+						G: 123,
+						B: 128
+					}
+				},
+				{ // Hippo
+					fileName: "svg_f_object_152_0bg.svg",
+					backgroundColor: { // 桃紅
+						R: 225,
+						G: 123,
+						B: 128
+					}
+				},
+				{ // Fox
+					fileName: "svg_f_object_153_0bg.svg",
+					backgroundColor: { // 草綠
+						R: 156,
+						G: 209,
+						B: 171
+					}
+				},
+				{ // Macaque
+					fileName: "svg_f_object_157_0bg.svg",
+					backgroundColor: { // 淺黃色
+						R: 253,
+						G: 252,
+						B: 232
+					}
+				},
+				{ // Bull
+					fileName: "svg_f_object_158_0bg.svg",
+					backgroundColor: { // 灰藍
+						R: 153,
+						G: 212,
+						B: 217
+					}
+				},
+				{ // Seal
+					fileName: "svg_f_object_174_0bg.svg",
+					backgroundColor: { // 灰藍
+						R: 153,
+						G: 212,
+						B: 217
+					}
+				}
+			];
+					
+			var selectedLoadingAnimal = loadingAnimals[ Math.floor(Math.random() * 15) ]; // random select an animal to be front cover
+			
+			//document["loading-animal"].src = "src/svg/loading/" + loadingAnimals[0].fileName;
+			document.getElementById("loading-animal").src = "src/svg/loading/" + selectedLoadingAnimal.fileName; // set animal image
+			document.getElementById("front-cover").style.backgroundColor = "rgb(" + selectedLoadingAnimal.backgroundColor.R + "," + selectedLoadingAnimal.backgroundColor.G + "," + selectedLoadingAnimal.backgroundColor.B + ")"; // set background color
+			document.getElementById("loading-symbol").style.color = "rgba(" + selectedLoadingAnimal.backgroundColor.R + "," + selectedLoadingAnimal.backgroundColor.G + "," + selectedLoadingAnimal.backgroundColor.B + ",0.8)"; // set background color
+		
+			setTimeout(function loadReciprocal(){
+				loadTimer -= 1000;
+			
+				if (loadTimer == 0){
+					if (loaded == true){ // page already loaded
+						// Fade out
+						document.getElementById("front-cover").style.animationName = "fade";
+						setTimeout(function(){document.getElementById("front-cover").style.display = "none";}, 800);
+					}
+					else {
+						loaded = true;
+					}
+				}
+				else {
+					setTimeout(loadReciprocal, 1000);
+				}
+			}, 1000);
+			
+			var scrollObj = skrollr.init({ // initial skrollr
+				smoothScrolling : true,
+				scale:2,
+			});
+			
+			window.onload = function(){
+				if (loaded == true){ // timer is timeout
+					// Fade out
+					document.getElementById("front-cover").style.animationName = "fade";
+					setTimeout(function(){document.getElementById("front-cover").style.display = "none";}, 800);
+				}
+				else {
+					loaded = true;
+				}
+			}
+		</script>
+	</body>
+</html>
