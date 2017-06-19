@@ -6,7 +6,7 @@
 		<script src="js/skrollr.min.js">// for scroll animate</script>
 		<script src="js/jquery-3.2.1.min.js">// JQuery 3.2.1</script>
 		<link rel="stylesheet" type="text/css" href="css/loading.css"><!-- for loading page & animate --></link>
-		<!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">< for animate ></link-->
+		<link rel="stylesheet" type="text/css" href="css/animate.min.css"><!-- for animate --></link>
 		<style type="text/css">
 			#skrollr-body {
 				position: absolute;
@@ -54,7 +54,7 @@
 				filter: saturate(4) contrast(175%) brightness(150%);
 			}
 			
-			#loading-symbol::after {
+			#loading-symbol:after {
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;
 				box-sizing: border-box;
@@ -67,6 +67,25 @@
 				100%{
 					opacity: 0;
 				}
+			}
+			
+			#scroll-down-message {
+				position: fixed;
+				top: 60%;
+				right: 50px;
+				font-family: 'Ubuntu';
+				font-weight: 300;
+				font-size: 18px;
+				color: #FFFFFF;
+				z-index: 87;
+				animation-delay: 1.2s;
+			}
+			
+			#scroll-down-message:after {
+				content: url(src/img/scroll-arrow.png);
+				position: relative;
+				top: 28px;
+				left: 0;
 			}
 			
 			#background {
@@ -457,7 +476,7 @@
 				transition-timing-function: ease-out;
 			}
 			
-			#bloom {
+			#escape {
 				display: none;
 				width: 100%;
 				height: 100%;
@@ -465,6 +484,50 @@
 				top: 0;
 				left: 0;
 				z-index: 88;
+			}
+			
+			#click-message {
+				display: none;
+				position: fixed;
+				bottom: -151px;
+				right: 50px;
+				font-family: "Comic Sans MS";
+				font-weight: 300;
+				font-size: 36px;
+				z-index: 87;
+				animation-name: finger;
+				animation-duration: 5s;
+				animation-timing-function: ease-out;
+				animation-delay: 1s;
+				animation-fill-mode: forwards;
+				animation-iteration-count: infinite;
+			}
+			
+			#click-message:before {
+				content: url(src/img/finger-2.png);
+				position: relative;
+				top: 28px;
+				left: 0;
+			}
+			
+			@keyframes finger {
+				0% {
+					bottom: 2%; 
+					right: 50px;
+				}
+				32% {
+					bottom: 12%; 
+					right: 100px;
+					opacity: 1;
+				}
+				40% {
+					opacity: 0;
+				}
+				100% {
+					bottom: 12%; 
+					right: 100px;
+					opacity: 0;
+				}
 			}
 		</style>
 	</head>
@@ -476,11 +539,17 @@
 			</div>
 		</div>
 		<div id="game-body" style="display: none;">
+			<!-- Message begin -->
+			<div id="click-message">
+				Click it!
+			</div>
+			<!-- Message end -->
+		
 			<div class="skrollable-container">
 				<div class="thermometer" style="position: fixed; top: 25%; left: 5px; z-index: 87;">
-					<img id="thermometer-base" src="src/img/thermometer-2.png"/>
-					<div id="thermometer-bar" style="height: 184px; width: 61px; position: absolute; bottom: 31px; left: 64px; background-color: rgb(223, 49, 86); border-radius: 50px;"></div>
-					<img id="thermometer-bar-base" src="src/img/thermometer-degree-2.png" style="position: absolute; bottom: 31px; left: 25px;"/>
+					<img id="thermometer-base" src="src/img/thermometer-2.png" style="width: 90%;"/><!-- about 172px -->
+					<div id="thermometer-bar" style="height: 165.6px; width: 54.9px; position: absolute; bottom: 31px; left: 58px; background-color: rgb(223, 49, 86); border-radius: 50px;"></div>
+					<img id="thermometer-bar-base" src="src/img/thermometer-degree-2.png" style="width: 126px; position: absolute; bottom: 27px; left: 23px;"/>
 					<!-- Additional: thermometer-bar box shadow-->
 				</div>
 				<div id="frontground" class="base">
@@ -492,11 +561,18 @@
 						<div id="sun"></div>
 						<div id="mountain" style="height: 100%; position: relative; bottom: -15%; left: 0; background-image: url('src/img/forest.png'); background-repeat: repeat-x; background-size: auto 183px; background-position: 0 100%;">
 							<div id="mountain-content" style="width=100%;"><!-- no use --></div>
-						</div>
+						</div> 
 					</div>
 					<div class="ground" style="position: relative;">
 						<img id="zoo-entrance" src="src/img/zoo-1.png" style="height: 438px; position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto -16px auto; z-index: 87;"/>
 						<div id="zoo-entrance-shim" style="width: 750px; height: 75px; position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto; background-color: rgb(250, 218, 149);  z-index: 1;"></div>
+						
+						<!-- decoration x1 begin -->
+						<div class="decoration" style="position: absolute; top: 3%; left: 26%;">
+							<img class="kid hide-and-seek" src="src/img/kid-4.png" style="height: 110px; position: absolute;"/>
+							<img class="kid hide-and-seek" src="src/img/kid-4_shocked.png" style="height: 110px; position: absolute; animation-delay: 1s;"/>
+						</div>	
+						<!-- decoration x1 end -->
 						
 						<div id="grassland-2" class="animal-area" style="position: absolute; bottom: 68%; left: 17.8%;">
 							<div id="grassland-2-mask" style="width: 289px; height: 188px; position: absolute; bottom: 0; left: -139px; cursor: pointer; z-index: 88;" onclick="increaseAnger(2)"></div>
@@ -521,6 +597,13 @@
 							<img id="grass-1" src="src/img/grass-1.png" style="width: 168px; position: absolute; bottom: 0; left: 0; margin-left: -87px"/>
 						</div>
 						
+						<!-- decoration x1 begin -->
+						<div class="decoration" style="position: absolute; top: 64%; left: 32%;">
+							<img class="parent hide-and-seek" src="src/img/parent.png" style="height: 155px; position: absolute;"/>
+							<img class="parent hide-and-seek" src="src/img/parent_shocked.png" style="height: 155px; position: absolute; animation-delay: 1s;"/>
+						</div>	
+						<!-- decoration x1 end -->
+						
 						<div id="nocturnal" class="animal-area" style="position: absolute; bottom: 50%; left: 32%;">
 							<div id="nocturnal-mask" style="width: 227px; height: 232px; position: absolute; bottom: 0; left: -27px; cursor: pointer; z-index: 88;" onclick="increaseAnger(3)"></div>
 							<img id="nocturnal-background" src="src/img/nocturnal_hover.png" style="position: absolute; bottom: -5px; left: -32px; filter: blur(4px);"/>
@@ -536,6 +619,22 @@
 							<img id="iceberg" src="src/img/iceberg.png" style="width: 200px; position: absolute; bottom: 0; left: 0; margin-left: -139px"/>
 							<img id="polar-bear" src="src/img/polar_bear.png" style="width: 140px; position: absolute; bottom: 0; left: 0;"/>
 						</div>
+						
+						<!-- decoration x3 begin -->
+						<div class="decoration" style="position: absolute; top: 19%; left: 64.5%;">
+							<img id="vendor" src="src/img/vendor.png" style="width: 125px; position: absolute;"/>
+						</div>
+						
+						<div class="decoration" style="position: absolute; top: 27.5%; left: 74%;">
+							<img class="kid hide-and-seek" src="src/img/kid-2.png" style="height: 110px; position: absolute;"/>
+							<img class="kid hide-and-seek" src="src/img/kid-2_shocked.png" style="height: 110px; position: absolute; animation-delay: 1s;"/>
+						</div>
+						
+						<div class="decoration" style="position: absolute; top: 45%; left: 61.5%;">
+							<img class="kid hide-and-seek" src="src/img/kid-5.png" style="height: 110px; position: absolute;"/>
+							<img class="kid hide-and-seek" src="src/img/kid-5_shocked.png" style="height: 110px; position: absolute; animation-delay: 1s;"/>
+						</div>						
+						<!-- decoration x3 end -->
 						
 						<div id="aquarium" class="animal-area" style="position: absolute; bottom: 65%; left: 80%;">
 							<div id="aquarium-mask" style="width: 250px; height: 131px; position: absolute; bottom: 0; left: 0; cursor: pointer; z-index: 88;" onclick="increaseAnger(5)"></div>
@@ -623,8 +722,10 @@
 				</div>
 				
 				<div id="unclick-shim"></div>
-				<div id="bloom">
-					<img src="src/img/boom.png" style="width: 500px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+				<div id="escape">
+					<div id="bloom" class="animated tada" style="width: 100%; height: 100%;">
+						<img src="src/img/boom.png" style="width: 500px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -638,11 +739,18 @@
 				</div>
 			</div>
 			<!-- Loading end -->
-			<div class="skrollable-container" data-0="opacity: 0.8;" data-500="opacity: 1;">
+			
+			<!-- Message begin -->
+			<div id="scroll-down-message" data-0="display: block; opacity: 1;" data-100="opacity: 0;" data-101="display: none;">
+				Scroll Down!
+			</div>
+			<!-- Message end -->
+			
+			<div class="skrollable-container" data-0="opacity: 0.8;" data-500="opacity: 1;" data-5750="opacity: 1;" data-6000="opacity: 0;">			
 				<div class="thermometer" style="position: fixed; top: 25%; left: 5px; z-index: 87;">
-					<img id="thermometer-base" src="src/img/thermometer-2.png"/>
-					<div id="thermometer-bar" data-2000="height: 0px" data-2800="height: 184px;" style="position: absolute; bottom: 31px; left: 64px; width: 61px; background-color: rgb(223, 49, 86); border-radius: 50px;"></div>
-					<img id="thermometer-bar-base" src="src/img/thermometer-degree-2.png" style="position: absolute; bottom: 31px; left: 25px;"/>
+					<img id="thermometer-base" src="src/img/thermometer-2.png" style="width: 90%;"/><!-- about 172px -->
+					<div id="thermometer-bar" data-2000="height: 0px" data-2800="height: 165.6px;" style="width: 54.9px; position: absolute; bottom: 31px; left: 58px; background-color: rgb(223, 49, 86); border-radius: 50px;"></div>
+					<img id="thermometer-bar-base" src="src/img/thermometer-degree-2.png" style="width: 126px; position: absolute; bottom: 27px; left: 23px;"/>
 					<!-- Additional: thermometer-bar box shadow-->
 				</div>
 				<div id="frontground" class="base">
@@ -731,7 +839,16 @@
 						<div id="visitor-2" class="left-visitors" style="position: absolute; left: -10%; animation-delay: 2.5s;">
 							<img id="kid-1" class="ld ld-bounce-a" src="src/img/kid-4.png" style="height: 100px; position: absolute; top: 51px; left: 100px;"/>
 							<img id="kid-2" class="ld ld-bounce-a" src="src/img/kid-3.png" style="height: 100px; position: absolute; top: 51px; left: 32px;"/>
-							<img id="kid-3" src="src/img/kid-1-shocked.png" style="height: 100px; position: absolute; top: 84px; left: -70px"/>
+							<img id="kid-3" src="src/img/kid-1_shocked.png" style="height: 100px; position: absolute; top: 84px; left: -70px"/>
+						</div>
+						
+						<div id="visitor-3" class="right-visitors" style="position: absolute; right: -10%; animation-delay: 1s; animation-duration: 7.5s;">
+							<img id="elder" src="src/img/people-2.png" style="height: 145px;"/>
+						</div>
+						
+						<div id="visitor-4" class="right-visitors" style="position: absolute; right: -10%; animation-delay: 4s;">
+							<img id="women" src="src/img/people-1.png" style="height: 150px; position: absolute; top: 15px; left: 0px;"/>
+							<img id="kid-5" class="animated infinite bounce" src="src/img/kid-5.png" style="height: 100px; position: absolute; top: 78px; left: 77px;"/>
 						</div>
 					</div>
 				</div>
@@ -742,6 +859,8 @@
 				loadTimer = 1000;
 				
 			var nowPlaying;
+			
+			var clickMsgFlag = false;
 				
 			var loadingAnimals = [
 				{ // Koala
@@ -888,7 +1007,8 @@
 					if (loaded == true){ // page already loaded
 						// Fade out
 						document.getElementById("front-cover").style.animationName = "fade";
-						setTimeout(function(){document.getElementById("front-cover").style.display = "none";}, 800);
+						$("#scroll-down-message").attr("class", "animated swing"); // animate scroll message after loaded
+						setTimeout(function(){document.getElementById("front-cover").style.display = "none";}, 801);
 					}
 					else {
 						loaded = true;
@@ -908,7 +1028,8 @@
 				if (loaded == true){ // timer is timeout
 					// Fade out
 					document.getElementById("front-cover").style.animationName = "fade";
-					setTimeout(function(){document.getElementById("front-cover").style.display = "none";}, 800);
+					$("#scroll-down-message").attr("class", "animated swing"); // animate scroll message after loaded
+					setTimeout(function(){document.getElementById("front-cover").style.display = "none";}, 801);
 				}
 				else {
 					loaded = true;
@@ -919,8 +1040,13 @@
 					//var bodyHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.html.clientHeight, document.html.scrollHeight, document.html.offsetHeight);
 					var bodyHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight); // WARNING!! BUGGY
 
-					if ($this.scrollTop() > bodyHeight * (5800/6500)) { // (scene-3 almost end / all frame size)
-					   document.getElementById("skrollr-body").style.display = "none";
+					if ($this.scrollTop() > bodyHeight * (6000/6500)){
+						document.getElementById("skrollr-body").style.display = "none";
+						if (clickMsgFlag != true){
+							document.getElementById("click-message").style.display = "block"; // show finger message
+						}
+					}
+					else if ($this.scrollTop() > bodyHeight * (5800/6500)) { // (scene-3 almost end / all frame size)
 					   document.getElementById("game-body").style.display = "inline"; // default
 					   //$('body').style.height = "100%";
 					}
@@ -928,6 +1054,9 @@
 			}
 			
 			function increaseAnger(index){
+				clickMsgFlag = true;
+				document.getElementById("click-message").style.display = "none";
+			
 				document.getElementById("playbox-shim").style.display = "block";
 				document.getElementById("playbox").style.display = "block";
 				document.getElementById("playbox-scene-" + index).style.display = "block";
@@ -936,22 +1065,24 @@
 			}
 			
 			function closeBox(){
+				var thermometerHeight = $("#thermometer-base").height() - parseInt(document.getElementById("thermometer-bar").style.bottom, 10); /* Must put inner function, because that can't get height value when window loadind*/
+			
 				document.getElementById("playbox-shim").style.display = "none";
 				document.getElementById("playbox").style.display = "none";
 				document.getElementById("playbox-scene-" + nowPlaying).style.display = "none";
-				
+
 				//var anger = document.getElementById("thermometer-bar").style.height;
 				var anger = $("#thermometer-bar").height();
 				document.getElementById("thermometer-bar").style.height = (anger + 20) * 1.15 + "px";
 				
-				if ((anger + 20) * 1.15 > 450){
+				if ((anger + 20) * 1.15 > thermometerHeight){
 					document.getElementById("unclick-shim").style.display = "block";
 					
 					setTimeout(function(){ // move thermometer
 						$(".thermometer").attr("class", "thermometer boom");
 						
-						setTimeout(function(){ // show boom
-							document.getElementById("bloom").style.display = "block";
+						setTimeout(function(){ // show escape
+							document.getElementById("escape").style.display = "block";
 							
 							setTimeout(function(){ // end game
 								document.getElementById("game-body").style.display = "none";
@@ -960,7 +1091,7 @@
 					}, 1000);
 					
 					/*setTimeout(function(){
-							document.getElementById("bloom").style.display = "block";
+							document.getElementById("escape").style.display = "block";
 							alert(87);
 					}, 2200);*/
 					/*$(".thermometer").css({
@@ -969,10 +1100,10 @@
 						"transform": "translate(-50%, -50%)",
 					});*/
 				}
-				else if ((anger + 20) * 1.15 > 400){
+				else if ((anger + 20) * 1.15 > thermometerHeight * 0.95){
 					$(".thermometer").attr("class", "thermometer ld ld-tremble xhalf");
 				}
-				else if ((anger + 20) * 1.15 > 330) {
+				else if ((anger + 20) * 1.15 > thermometerHeight * 0.75) {
 					$(".thermometer").attr("class", "thermometer ld ld-tremble");
 				}
 			}
