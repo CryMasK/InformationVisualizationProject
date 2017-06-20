@@ -40,7 +40,7 @@
 				position: fixed;
 				width: 100%;
 				text-align: center;
-				margin: 15% 0 0 0;
+				margin: 3% 0 0 0;
 			}
 			
 			#loading-animal {
@@ -122,12 +122,26 @@
 			
 			#giraffe-dialog-text {
 				filter: blur(4px);
+				cursor:pointer;
 			}
 			
 			#giraffe-dialog-text:hover {
 				filter: blur(0px);
+				transform: scale(1.2);
 			}
-			
+			#giraffe-dialog-text:hover  .box-hover-text {
+				display: block;	
+			}
+			#giraffe-dialog-text .box-hover-text {
+            width: 700px;
+            height: auto;
+			overflow:hide;
+            position: absolute;  
+            display: none;
+			padding:10px;
+            border-radius:10px;			
+            background-color: rgba(0,0,0, 0.7);
+            }
 			.left-visitors {
 				animation-name: left;
 				animation-duration: 5s;
@@ -534,9 +548,18 @@
 	<body>
 		<div id="last-scene" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: linear-gradient(to top, rgb(255, 255, 255), rgb(245, 180, 55), rgb(236,77,11));">
 			<div style="width: 100%; height: 100%; position: absolute; background: url('src/img/desert-01.png'); background-size: 1920px; background-repeat: no-repeat; background-position: bottom center;"></div>
-			<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/6jrbDhyiqq8" frameborder="0" allowfullscreen></iframe>
+			<div style="position:absolute; display:block;top:0%;left: 40%;"><h1 style="font-weight:bold;font-size:25px;color:white;">  動物園裡的動物真的快樂嗎？</h1>
+				 <h2 style="font-size:18px;color:white;text-align:center;">我們可以從友善友愛的心出發</br><span style="color:red"><img src="src/img/勿餵食.png" style="height: 50px;">
+				 勿餵食</span></br><span style="color:red"><img src="src/img/勿開閃光燈.png" style="height: 50px;">
+				 勿開閃光燈</span></br><span style="color:red"><img src="src/img/勿拍打.png" style="height: 50px;">
+				 拒拍打</span></br></br>給動物們一個整潔舒適的環境</h2></div>
+			<div style="position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%);">			     
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/FwA5XTnCCvA" frameborder="0" allowfullscreen></iframe>
 			</div>
+			<div style="position: absolute; top:50%; left: 75%; transform: translate(-50%, -50%);">   
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/VBqpXYCv43U" frameborder="0" allowfullscreen ></iframe>
+			</div>
+			<div style="position:absolute; display:block; top: 80%; left: 30%;font-weight:bold; "><h1 style="font-size:25px;font-weight:bold;font-size:18px;color:white;">我們觀看動物園的態度，正決定這些被圈養在人工環境裡的動物們，其生命延續的方式與意義。</div>
 		</div>
 		<div id="game-body" style="display: none;">
 			<!-- Message begin -->
@@ -671,31 +694,69 @@
 							<img class="ld ld-tremble" src="src/img/giraffe_unhappy-2.png" style="height: 350px; position: absolute; top: 0%; left: 22%;"/>
 							<img class="ld ld-tremble" src="src/img/elephant_unhappy-2.png" style="height: 250px; position: absolute; top: 20%; left: 36%;"/>
 							<img src="src/img/fence_front.png" style="width: 416px; height: 150px; position: absolute; top: 58%; left: 24%;"/>
+							<div style="position:absolute; display:block; left:0px; bottom:-3px; width:915px; height:auto; background-color:black;color:white;opacity:0.7;padding-left:5px;padding-right:5px;"><p style="text-align:justify;">  <span style="font-weight:bold;font-size:18px;">關於長期被關對動物的影響</span></br>動物說：人類你們逛動物園有想過動物的心情嗎!!!長期被關的動物有時會出現「刻板行為」，也就是重複進行某個動作，例如小白鯨一整天反覆在水池中繞圈子游泳；老虎在籠內不斷重複走動；浣熊在籠子角落反覆轉身；鸚鵡拔掉身上的羽毛⋯⋯造成許多圈養動物刻板行為的原因就是壓力、孤立或無聊。當你們在動物園玩得開心感到有趣時，我們動物其實正受到極大的精神壓力折磨😰</p></div> 
+						</div>
+						<div id="playbox-scene-2" class="playbox-scene"style="background: linear-gradient(to top, rgb(165, 222, 228), rgb(46, 169, 223));">
+                        <img class="background" src="src/img/animal_area-1.png" style="width: 950px; position: relative; top: 0; left: 0;"/>
+                        <img class="ld ld-tremble" src="src/img/lion_sleep.png" style="width: 150px; position: absolute; top: 28%; left: 50%;"/>
+                        <img class="hide-and-seek" src="src/img/eye-3.png" style="width: 100px; position: absolute; top: 28%;; left: 49%; animation-delay: 1.33s; opacity: 0;transform: scaleX(-1) rotate(19deg);"/>						
+						<img class="ld ld-tremble" src="src/img/monkey_sleep.png" style="width: 100px; position: absolute; top: 18%; left: 10%;"/>
+						<img class="hide-and-seek" src="src/img/eye-3.png" style="width: 50px; position: absolute; top: 18%; left: 10%; animation-delay: 1.33s; opacity: 0;"/>	
+						<img  src="src/img/kid-5.png" style="height: 110px;top: 50%; left: 30%; position: absolute; "/>
+						<img class="kid hide-and-seek" src="src/img/kid-5_shocked.png" style="height: 110px;top: 50%; left: 30%;position: absolute; animation-delay: 1.33s;"/>
+						<img src="src/img/kid-3.png" style="height: 110px;top: 50%; left: 15%; position: absolute; "/>
+						<img class="kid hide-and-seek" src="src/img/kid-3_shocked.png" style="height: 110px;top: 50%; left: 15%;position: absolute; animation-delay: 1.33s;"/>
+						<div style="position:absolute; display:block; left:0px; bottom:-3px; width:915px; height:auto; background-color:black;color:white;opacity:0.7;padding-left:5px;padding-right:5px;">  
+                        <p style="text-align:justify;"> 小朋友大叫（小猴子！）另一個小朋友大叫（大獅子！）</br>
+                        猴子說（小朋友們你們的聲音太大了，科學家叔叔阿姨們說暴露在高於85 分貝的噪音環境中對我們有很大的傷害噢！）</p></div> 
 						</div>
 						
-						<div id="playbox-scene-2" class="playbox-scene">							
-						</div>
 						
 						<div id="playbox-scene-3" class="playbox-scene">
 							<img class="background take-photo" style="width: 950px; height: 950px; position: absolute; top: 0; left: 0;"/>
 							<!--img class="wing-2 hide-and-seek" src="src/img/eye-2.png" style="width: 100px; position: absolute; top: 0%; left: 22%;"/-->
-							<img class="ld ld-tremble" src="src/img/eye-3.png" style="width: 100px; position: absolute; top: 19%; left: 17%;"/>
+							<img class="ld ld-tremble" src="src/img/貓頭鷹.png" style="width:500px; position: absolute; top: 18%; left: 10%;"/>
+							<img class="hide-and-seek" src="src/img/eye-3.png" style="width: 100px; position: absolute; top: 23%; left: 19%; animation-delay: 1.33s; opacity: 0;"/>
 							<div style="position: absolute; top: 38%; left: 63%; transform: rotate(-13deg);">
 								<img src="src/img/phone.png" style="height: 100px; position: absolute; top: 0; left: 0;"/>
 								<img src="src/img/hand.png" style="height: 150px; position: relative; top: 50px; left: 22px;"/>
 								<img class="hide-and-seek" src="src/img/flash.png" style="height: 110px; position: absolute; top: -29px; left: -33px; animation-delay: 1.33s; opacity: 0;"/>
 							</div>
+							<div style="position:absolute; display:block; left:0px; bottom:-3px; width:915px; height:auto; background-color:black;color:white;opacity:0.7;padding-left:5px;padding-right:5px;">  
+                        <p style="text-align:justify;">  
+                        <span style="font-weight:bold;font-size:18px;">開閃光對動物的影響</span></br>貓頭鷹說：我知道你們出來玩都想要拍照留念，你們開心比ya，但我們不開心。</br>閃光燈或調很亮的手機螢幕讓你們好拍照，卻傷害動物眼睛，還會驚擾、造成恐慌，嚴重一點嚇得拚命逃竄、撞到硬物導致病菌感染慢性死亡或直接死亡。</p></div> 
 						</div>
 						
-						<div id="playbox-scene-4" class="playbox-scene">
+						<div id="playbox-scene-4" class="playbox-scene" style="background: linear-gradient(to top, rgb(165, 222, 228), rgb(46, 169, 223));">
+						<img class="background" src="src/img/iceberg.png" style="width: 950px; position: relative; top: 0; left: 0;"/>
+						<img src="src/img/勿拍打.png" style="width: 150px; position: absolute; top: 0%;  right: 30%;" />
+						<img src="src/img/勿開閃光燈.png" style="width: 150px; position: absolute; top: 0%; right:15%;" />
+						<img src="src/img/勿餵食.png" style="width: 150px; position: absolute; top:0%;  right: 0%;" />
+						<img class="ld ld-tremble" src="src/img/polar_bear.png" style="width: 140px; position: absolute; top: 40%; left: 80%;"/>
+						<img class="hide-and-seek" src="src/img/eye-3.png" style="width: 90px; position: absolute; top: 38%; left: 78%; animation-delay: 1.33s; opacity: 0;"/>
+                        <img  src="src/img/kid-5.png" style="height: 110px;top: 45%; left: 20%; position: absolute; "/>
+						<img class="kid hide-and-seek" src="src/img/kid-5_shocked.png" style="height: 110px;top:45%; left: 20%;position: absolute; animation-delay: 1.33s;"/>
+						<img src="src/img/kid-3.png" style="height: 110px;top: 45%; left: 5%; position: absolute; "/>
+						<img class="kid hide-and-seek" src="src/img/kid-3_shocked.png" style="height: 110px;top: 45%;left: 5%;position: absolute; animation-delay: 1.33s;"/>						
+						<div style="position:absolute; display:block; left:0px; bottom:-3px; width:915px; height:auto; background-color:black;color:white;opacity:0.7;padding-left:5px;padding-right:5px;">  
+                        <p style="text-align:justify;"> <span style="font-weight:bold;font-size:18px;">驚嚇造成動物的情緒不穩定</span></br>
+                        北極熊說：作為遊客，逛動物園時不要大吵大鬧，不要拍玻璃、用閃光燈，因為這樣會使我們變得煩躁，性情不穩定，可能會不自覺的傷害你們。</br>
+                        事實上，動物園最危險的動物並非獅子老虎或我們熊，而是草食動物。飼養員常要和草食動物零距離接觸，遊客也是。但牠們的蹄和角是能給人致命一擊的，其中犀牛、河馬、大象最為危險，可以殺人於無形。</p></div>
 						</div>
 						
 						<div id="playbox-scene-5" class="playbox-scene">
 							<img class="background" src="src/img/animal_area-3.png" style="width: 950px; position: relative; top: 0; left: 0;"/>
-							
-							<img src="src/img/dolphin-3_unhappy.png" style="width: 250px; position: absolute; top: 0%; left: 22%;"/>
-							<img src="src/img/dolphin-1_unhappy.png" style="width: 250px; position: absolute; top: 20%; left: 36%;"/>
+							<img src="src/img/馴獸師-01.png" style="width: 400px; position: absolute; top: 10%; left: -10%;"/>
+							<img class="hide-and-seek" src="src/img/dolphin-1_unhappy.png" style="width: 250px; position: absolute; top: 0%; left: 50%;"/>
+							<img class="hide-and-seek" src="src/img/dolphin-3_unhappy.png" style="width: 250px; position: absolute; top: 0%; left: 22%;animation-delay: 1.5s;"/>
+							<img class="hide-and-seek" src="src/img/dolphin-3_unhappy.png" style="width: 250px; position: absolute; top: 20%; left: 64%;"/>
+							<img class="hide-and-seek"src="src/img/dolphin-1_unhappy.png" style="width: 250px; position: absolute; top: 20%; left: 36%;animation-delay: 1.5s;"/>
 							<img src="src/img/half_pool.png" style="width: 416px; height: 150px; position: absolute; top: 58%; left: 24%;"/>
+							<div style="position:absolute; display:block; left:0px; bottom:-3px; width:915px; height:auto; background-color:black;color:white;opacity:0.7;padding-left:5px;padding-right:5px;">  
+                        <p style="text-align:justify;"> <span style="font-weight:bold;font-size:18px;">表演對動物造成的影響</span></br>                      
+                        海豚說：動物園海洋館的水池平均水深為6米、寬5米、長20米；而在野外，我們每天平均能出游40至150公里，1小時平均能游5到50千米，下潛深度在10至300米。所以說，海豚的自然行為在動物園裡被嚴重抑制!!!（圖示）</br>
+                        不僅如此，我們還被用於表演娛樂，你們一定都看過海豚解數學題、頂球，或直立身體倒著游動，我們舉起尾鳍，向你們擺動「打招呼」，訓養員指揮我們發出聲音「唱歌」。</br>
+                        偷偷告訴你們，這些都不是我們的自然行為，都是你們人類訓練、我們因而「被」學會的把戲。</p></div>
 						</div>
 						
 						<div id="playbox-scene-6" class="playbox-scene">
@@ -717,6 +778,8 @@
 							<img class="ld ld-wander-h x4" src="src/img/garbage-3.png" style="width: 175px; position: absolute; top: 24%; left: 72%"/>
 							<img class="ld ld-wander-h x4" src="src/img/garbage-4.png" style="width: 175px; position: absolute; top: 49%; left: 60%"/>
 							<img class="ld ld-wander-h x4" src="src/img/garbage-5.png" style="width: 175px; position: absolute; top: 33%; left: 79%"/>
+					     <div style="position:absolute; display:block; left:0px; bottom:-3px; width:915px; height:auto; background-color:black;color:white;opacity:0.7;padding-left:5px;padding-right:5px;">  
+                        <p style="text-align:justify;"> 動物：你們亂丟的垃圾都飄進來了，長期沒有打掃太亂了，我們會生病、變得沒精神</p></div>
 						</div>
 					</div>
 				</div>
@@ -732,10 +795,13 @@
 		
 		<div id="skrollr-body">
 			<!-- Loading begin -->
-			<div id="front-cover" class="loading">
+			<div id="front-cover" class="loading">		
 				<div class="loading-container">
+				<h1 style="color: #ffff; font-family: 'Helvetica Neue', sans-serif; font-size: 65px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;">歡迎來到悲傷動物園</h1> 
 					<img id="loading-animal" alt="NOW LOADING..."/>
 					<div id="loading-symbol" class="ld ld-ring ld-cycle"></div>
+					<h2 style="color: #111; font-family: 'Open Sans', sans-serif; font-size: 25px; font-weight: bold; line-height: 32px; margin: 0 0 72px; text-align: center;">這個動物園跟你平常去的動物園有什麼差別呢？</br>下滑網頁，看看有什麼變化，之後也可以點擊動物們試試。</h2>
+
 				</div>
 			</div>
 			<!-- Loading end -->
@@ -825,7 +891,12 @@
 						<img id="giraffe" src="src/img/giraffe.png" style="height: 300px; position: absolute; top: 0; left: 0;"/>
 						<div id="giraffe-dialog" data-1500="display: none;" data-2000="display: block" data-3000="display: none;" style="position: absolute; top: -100px; left: 61px; text-align: center;">
 							<img class="dialog" src="src/img/dialog-1.png" style="width: 210px; position: absolute; top: 0; left: 0; transform: rotate(-7deg);"/>
-							<div id="giraffe-dialog-text" style="width: 220px; position: absolute; margin-top: 50px; font-size: 20px; font-family: Impact;">They Are Coming !!</div>
+							<div id="giraffe-dialog-text" style="width: 220px; position: absolute; margin-top: 50px; font-size: 20px; font-family: Impact; color:red;">They Are Coming !!
+                            <div class="box-hover-text" >
+                            <h2 style="text-align: center; color:white;font-size:25px;font-weight:bold;">一些關於動物園的資訊</h2>
+                            <p style="text-align: left; color:white;font-size:20px;">  以臺北市立動物園88年至105年入園人數統計表來看，一年平均遊園人數為3647335人，也就是1年就有3百多萬人湧入動物園。</br>       又動物園有分淡旺季，從統計表中看，人數最低月份通常落在6月9月，推測應該是小朋友期末以及開學，不過淡季1個月平均遊園人數也有185138人，亦即1天約6171人到動物園。旺季的話最多人的月份並不是暑假反而是2月，寒假加上父母過年應該更有機會帶全家出遊，1個月平均遊園人數有512937人，所以就是旺季時1天約能有17098人入園。</p>
+                            </div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -844,6 +915,7 @@
 						
 						<div id="visitor-3" class="right-visitors" style="position: absolute; right: -10%; animation-delay: 1s; animation-duration: 7.5s;">
 							<img id="elder" src="src/img/people-2.png" style="height: 145px;"/>
+							
 						</div>
 						
 						<div id="visitor-4" class="right-visitors" style="position: absolute; right: -10%; animation-delay: 4s;">
@@ -856,11 +928,12 @@
 		</div>
 		<script type="text/javascript">
 			var loaded = false, // isWebLoaded
-				loadTimer = 1000;
+				loadTimer = 3000;
 				
 			var nowPlaying;
 			
-			var clickMsgFlag = false;
+			var clickMsgFlag = false,
+				lastSceneFlag = false;
 				
 			var loadingAnimals = [
 				{ // Koala
@@ -1047,8 +1120,11 @@
 						}
 					}
 					else if ($this.scrollTop() > bodyHeight * (5800/6500)) { // (scene-3 almost end / all frame size)
-					   document.getElementById("game-body").style.display = "inline"; // default
-					   //$('body').style.height = "100%";
+						if (lastSceneFlag != true){
+						   document.getElementById("game-body").style.display = "inline"; // default
+						   //$('body').style.height = "100%";
+						}
+						
 					}
 				});
 			}
@@ -1056,7 +1132,7 @@
 			function increaseAnger(index){
 				clickMsgFlag = true;
 				document.getElementById("click-message").style.display = "none";
-			
+			   
 				document.getElementById("playbox-shim").style.display = "block";
 				document.getElementById("playbox").style.display = "block";
 				document.getElementById("playbox-scene-" + index).style.display = "block";
@@ -1073,9 +1149,9 @@
 
 				//var anger = document.getElementById("thermometer-bar").style.height;
 				var anger = $("#thermometer-bar").height();
-				document.getElementById("thermometer-bar").style.height = (anger + 20) * 1.15 + "px";
+				document.getElementById("thermometer-bar").style.height = (anger + 20) * 1.1 + "px";
 				
-				if ((anger + 20) * 1.15 > thermometerHeight){
+				if ((anger + 20) * 1.1 > thermometerHeight){
 					document.getElementById("unclick-shim").style.display = "block";
 					
 					setTimeout(function(){ // move thermometer
@@ -1085,6 +1161,7 @@
 							document.getElementById("escape").style.display = "block";
 							
 							setTimeout(function(){ // end game
+								lastSceneFlag = true;
 								document.getElementById("game-body").style.display = "none";
 							}, 3000);
 						}, 1200);
@@ -1100,10 +1177,10 @@
 						"transform": "translate(-50%, -50%)",
 					});*/
 				}
-				else if ((anger + 20) * 1.15 > thermometerHeight * 0.95){
+				else if ((anger + 20) * 1.1 > thermometerHeight * 0.95){
 					$(".thermometer").attr("class", "thermometer ld ld-tremble xhalf");
 				}
-				else if ((anger + 20) * 1.15 > thermometerHeight * 0.75) {
+				else if ((anger + 20) * 1.1 > thermometerHeight * 0.75) {
 					$(".thermometer").attr("class", "thermometer ld ld-tremble");
 				}
 			}
