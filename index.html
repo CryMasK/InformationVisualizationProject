@@ -60,6 +60,10 @@
 				box-sizing: border-box;
 			}
 			
+			#firefox:before {
+				content: url(src/img/firefox-logo.png);
+			}
+			
 			@keyframes fade {				
 				0% {
 					opacity: 1
@@ -797,12 +801,12 @@
 			<!-- Loading begin -->
 			<div id="front-cover" class="loading">		
 				<div class="loading-container">
-				<h1 style="color: #ffff; font-family: 'Helvetica Neue', sans-serif; font-size: 65px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;">歡迎來到悲傷動物園</h1> 
+					<h1 style="color: #ffff; font-family: 'Helvetica Neue', sans-serif; font-size: 65px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;">歡迎來到悲傷動物園</h1> 
 					<img id="loading-animal" alt="NOW LOADING..."/>
 					<div id="loading-symbol" class="ld ld-ring ld-cycle"></div>
 					<h2 style="color: #111; font-family: 'Open Sans', sans-serif; font-size: 25px; font-weight: bold; line-height: 32px; margin: 0 0 72px; text-align: center;">這個動物園跟你平常去的動物園有什麼差別呢？</br>下滑網頁，看看有什麼變化，之後也可以點擊動物們試試。</h2>
-
 				</div>
+				<div style="display: flex; position: absolute; top: 90%; left: 50%; transform: translate(-50%, 0%); font-size: 18px; color: rgb(176, 183, 183);">Only works fine on&nbsp;<div id="firefox" style="color: rgb(214, 66, 3);">Firefox</div></div>
 			</div>
 			<!-- Loading end -->
 			
@@ -1074,7 +1078,7 @@
 			document.getElementById("loading-symbol").style.color = "rgba(" + selectedLoadingAnimal.backgroundColor.R + "," + selectedLoadingAnimal.backgroundColor.G + "," + selectedLoadingAnimal.backgroundColor.B + ",0.8)"; // set background color
 		
 			setTimeout(function loadReciprocal(){
-				loadTimer -= 1000;
+				loadTimer -= 3000;
 			
 				if (loadTimer == 0){
 					if (loaded == true){ // page already loaded
